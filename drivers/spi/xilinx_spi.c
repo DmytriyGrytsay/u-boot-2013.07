@@ -69,7 +69,7 @@ void spi_init(void)
 	/* do nothing */
 }
 
-void spi_set_speed(struct spi_slave *slave, uint hz)
+void spi_set_speed(struct spi_slave *slave, unsigned int hz)
 {
 	/* xilinx spi core does not support programmable speed */
 }

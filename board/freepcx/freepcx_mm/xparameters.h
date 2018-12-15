@@ -36,6 +36,9 @@
 
 /* IIC doesn't exist */
 
+/* SPI controller */
+#define XILINX_SPI_BASEADDR	0x83400000
+
 /* GPIO is leds_8bit*/
 #define XILINX_GPIO_BASEADDR	0x81420000
 

@@ -223,7 +223,7 @@ void spi_cs_deactivate(struct spi_slave *slave);
  *   slave:	The SPI slave
  *   hz:	The transfer speed
  */
-void spi_set_speed(struct spi_slave *slave, uint hz);
+void spi_set_speed(struct spi_slave *slave, unsigned int hz);
 
 /*-----------------------------------------------------------------------
  * Write 8 bits, then read 8 bits.

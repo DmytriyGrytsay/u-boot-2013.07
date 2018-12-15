@@ -79,6 +79,19 @@
 # define CONFIG_SYS_GPIO_0_ADDR		XILINX_GPIO_BASEADDR
 #endif
 
+#ifdef XILINX_SPI_BASEADDR
+# define CONFIG_XILINX_SPI              1
+# define CONFIG_SYS_SPI_BASE		XILINX_SPI_BASEADDR
+# define CONFIG_SPI                     1
+# define CONFIG_CMD_SPI
+# define CONFIG_ENC28J60
+# define ENC_SPI_BUS            	0
+# define ENC_CS_NUM             	2
+# define ENC_SPI_CLOCK			15625000
+# define CONFIG_HAS_ETH1
+# define CONFIG_ETH1ADDR		00:E0:0C:00:01:FE
+#endif
+
 /* interrupt controller */
 #ifdef XILINX_INTC_BASEADDR
 # define CONFIG_SYS_INTC_0_ADDR		XILINX_INTC_BASEADDR
@@ -357,6 +370,7 @@
 
 #define	CONFIG_EXTRA_ENV_SETTINGS	"unlock=yes\0" \
 					"nor0=flash-0\0"\
+					"netdev=eth0\0"\
 					"mtdparts=mtdparts=flash-0:"\
 					"256k(u-boot),256k(env),3m(kernel),"\
 					"1m(romfs),1m(cramfs),-(jffs2)\0"\
@@ -385,7 +399,7 @@
 #define CONFIG_FIT		1
 #define CONFIG_OF_LIBFDT	1
 
-#if defined(CONFIG_XILINX_LL_TEMAC) || defined(CONFIG_XILINX_AXIEMAC)
+#if defined(CONFIG_XILINX_LL_TEMAC) || defined(CONFIG_ENC28J60)
 # define CONFIG_MII		1
 # define CONFIG_CMD_MII		1
 # define CONFIG_PHY_GIGE	1

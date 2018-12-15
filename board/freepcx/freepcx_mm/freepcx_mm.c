@@ -25,6 +25,7 @@
 /* This is a board specific file.  It's OK to include board specific
  * header files */
 
+#include <spi.h>
 #include <common.h>
 #include <config.h>
 #include <netdev.h>
@@ -72,7 +73,7 @@ void board_init(void)
 
 int board_eth_init(bd_t *bis)
 {
-	int ret = 0;
+	int ret = 0, rc;
 
 #ifdef CONFIG_XILINX_LL_TEMAC
 # ifdef XILINX_LLTEMAC_BASEADDR
@@ -91,6 +92,12 @@ int board_eth_init(bd_t *bis)
 #   endif
 #  endif
 # endif
+#endif
+
+#ifdef CONFIG_ENC28J60
+	rc = enc28j60_initialize(ENC_SPI_BUS, ENC_CS_NUM, ENC_SPI_CLOCK, SPI_MODE_0);
+	if (!rc)
+		ret++;
 #endif
 	return ret;
 }
